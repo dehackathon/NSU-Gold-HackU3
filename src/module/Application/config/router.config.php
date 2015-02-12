@@ -12,6 +12,29 @@ return array(
                 ),
             ),
         ),
+<<<<<<< HEAD
+=======
+        'login' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/login',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\Login',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
+        'forgot-password' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/forgot-password',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\ForgotPassword',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
+>>>>>>> 9b5f0f78df659d6968e5c5f171742bfb01a0986c
         'home' => array(
             'type' => 'Zend\Mvc\Router\Http\Literal',
             'options' => array(

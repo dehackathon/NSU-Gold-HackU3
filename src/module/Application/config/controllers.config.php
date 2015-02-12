@@ -2,13 +2,13 @@
 
 return array(
     'invokables' => array(
-        'Application\Controller\ShoppingList' => 'Application\Controller\ShoppingListController',
-        'Application\Controller\Expenses' => 'Application\Controller\ExpensesController',
-        'Application\Controller\Register' => 'Application\Controller\RegisterController',
-        'Application\Controller\Login' => 'Application\Controller\LoginController',
-        'Application\Controller\ForgotPassword' => 'Application\Controller\ForgotPasswordController',
     ),
     'factories' => array(
         'Application\Controller\Index' => 'Application\Controller\Factory\IndexControllerFactory',
+        'Application\Controller\ShoppingList' => 'Application\Controller\Factory\ShoppingListControllerFactory',
+        'Application\Controller\Expenses' => 'Application\Controller\Factory\ExpensesControllerFactory',
+        'Application\Controller\Register' => 'Application\Controller\Factory\RegisterControllerFactory',
+        'Application\Controller\Login' => 'Application\Controller\Factory\LoginControllerFactory',
+        'Application\Controller\ForgotPassword' => 'Application\Controller\Factory\ForgotPasswordControllerFactory',
     ),
 );

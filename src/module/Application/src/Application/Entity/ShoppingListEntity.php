@@ -1,6 +1,6 @@
 <?php
 
-	namespace ApplicationEntity;
+	namespace Application\Entity;
 	
 	class ShoppingListEntity{
 		private $username;
@@ -15,7 +15,7 @@
 
     public function setUserName($username)
     {
-        $this->username = $usename;
+        $this->username = $username;
     }
     
       public function getShoppingList($shoppinglist)

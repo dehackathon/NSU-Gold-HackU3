@@ -7,5 +7,6 @@ return array(
         'Application\Controller\Expenses' => 'Application\Controller\ExpensesController',
         'Application\Controller\Register' => 'Application\Controller\RegisterController',
         'Application\Controller\Login' => 'Application\Controller\LoginController',
+        'Application\Controller\ForgotPassword' => 'Application\Controller\ForgotPasswordController',
     ),
 );

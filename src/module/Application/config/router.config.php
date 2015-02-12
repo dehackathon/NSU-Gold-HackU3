@@ -22,6 +22,16 @@ return array(
                 ),
             ),
         ),
+        'forgot-password' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/forgot-password',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\ForgotPassword',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
         'home' => array(
             'type' => 'Zend\Mvc\Router\Http\Literal',
             'options' => array(

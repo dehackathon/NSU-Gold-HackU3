@@ -8,7 +8,7 @@
 		
 
 
-    public function getUserName($username)
+    public function getUserName()
     {
         return $this->username;
     }
@@ -18,7 +18,7 @@
         $this->username = $username;
     }
     
-      public function getShoppingList($shoppinglist)
+      public function getShoppingList()
     {
         return $this->shoppinglist;
     }

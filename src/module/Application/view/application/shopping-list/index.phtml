@@ -7,11 +7,11 @@
     <div>
         <?php echo $this->username; ?>
 
-        <? foreach($this->shoppinglist as $item): ?>
-            <input type="text" class="button" id="item" name="item1" placeholder="Enter item" value="" ><br>
+        <?php foreach($this->shoppinglist as $item): ?>
+            <input type="text" class="button" id="item" name="item1" placeholder="<?= $item ?>" value="" ><br>
 
         <?php endforeach; ?>
-    
+
     </div>
     <!-- buttons -->
     <div>

@@ -1,7 +1,8 @@
 /* General */
 
+
 body {
-    background: url('../../img/confectionary.png') repeat;
+    background: url(img/confectionary.png) repeat;
     font-family: 'Open Sans', sans-serif;
     font-size: 11px;
 }
@@ -57,10 +58,28 @@ a:hover {
     color: black;
 }
 
+
+
 /* Fields and Button */
 
 .button {
     width: 80%;
+    height: 42px;
+    margin: 13px 0px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    background: #F2F3F5;
+    background-repeat: no-repeat;
+    background-position: 15px 17px;
+    text-indent: 17%;
+    font-family: inherit;
+    font-size: 16px;
+    color: #737373;
+}
+
+.button2 {
+    width: 40%;
     height: 42px;
     margin: 13px 0px;
     border-radius: 4px;
@@ -91,6 +110,8 @@ a:hover {
     background-color: #6d58f7;
 }
 
+
+
 /* Username & Password Icons */
 
 #username {
@@ -100,6 +121,8 @@ a:hover {
 #password {
     background-image: url('http://static.tumblr.com/mnsbkhd/5IMms3ldm/locked.png');
 }
+
+
 
 /* Checkbox */
 

@@ -1,0 +1,26 @@
+{
+  "name": "dehackathon/NSU-Gold-HackU3",
+  "description": "NSU Gold Team",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.zendframework.com/"
+    }
+  ],
+
+  "require": {
+    "zendframework/zendframework": "2.3.*"
+  },
+
+  "require-dev": {
+    "zendframework/zend-debug": "2.3.*",
+    "zendframework/zend-test": "2.3.*"
+  },
+
+  "autoload": {
+    "psr-0": {
+      "Application\\": "src/module/Application/src",
+      "ApplicationTest\\": "tests/"
+    }
+  }
+}

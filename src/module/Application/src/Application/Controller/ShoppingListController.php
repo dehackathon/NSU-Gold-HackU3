@@ -12,7 +12,6 @@ namespace Application\Controller;
 use Application\Mapper\DbMapper;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Mapper\DbMapper;
 
 class ShoppingListController extends AbstractActionController
 {

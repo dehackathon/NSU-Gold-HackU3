@@ -31,6 +31,7 @@ class DbMapper
 
    public function fetchShoppingList($username)
    	{
+        /** @var \Application\Entity\ShoppingListEntity $shoppinglist */
    	   $shoppinglist = new \Application\Entity\ShoppingListEntity();
    	   $items = array('glue','paste','toys','pizza','hotdog');
    	   $shoppinglist->setUserName($username);

@@ -12,5 +12,17 @@
  */
 
 return array(
-    // ...
+    'db' => array(
+        'driver'         => 'Mysqli',
+        'hostname'       => '104.236.220.144',
+        'dbname'         => 'nsugold',
+        'username'       => 'nsugold',
+        'password'       => 'nsugold',
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter'
+            => 'Zend\Db\Adapter\AdapterServiceFactory',
+        ),
+    ),
 );

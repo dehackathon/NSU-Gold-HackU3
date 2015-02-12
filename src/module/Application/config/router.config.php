@@ -2,6 +2,36 @@
 
 return array(
     'routes' => array(
+        'register' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/register',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\Register',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
+        'login' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/login',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\Login',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
+        'forgot-password' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/forgot-password',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\ForgotPassword',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
         'home' => array(
             'type' => 'Zend\Mvc\Router\Http\Literal',
             'options' => array(
@@ -21,7 +51,8 @@ return array(
                     'action'     => 'index',
                 ),
             ),
-        ),'expenses' => array(
+        ),
+        'expenses' => array(
             'type' => 'Zend\Mvc\Router\Http\Literal',
             'options' => array(
                 'route'    => '/expenses',

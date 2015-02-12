@@ -1,1 +1,64 @@
-Shopping List
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">Shopping List</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <form name="purchase-form" class="form-horizontal" action="/shopping-list/purchase" method="post">
+                    <div class="checkbox">
+                        <label><input type="checkbox">Ketchup</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Mustard</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Ramen Noodles (chicken flavor)</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Hotdogs</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Hotdog buns</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Chicken patties</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Koolaid</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Orange Juice</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Fruity Pebbles</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox">Milk</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-xs-10">
+                            <input type="text" class="form-control" id="username" placeholder="Description">
+                        </div>
+                        <div class="col-sm-4 col-xs-2">
+                            <button type="button" id="add-item" class="btn btn-default" data-loading-text="Adding..." autocomplete="off">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="remove-item">Remove</button>
+                <button type="submit" class="btn btn-primary" id="purchase-item">Purchase</button>
+            </div>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#add-item').on('click', function () {
+        var $btn = $(this).button('loading');
+        // business logic...
+        //$btn.button('reset');
+    });
+</script>

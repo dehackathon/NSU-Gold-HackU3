@@ -9,13 +9,29 @@
 
 namespace Application\Controller;
 
+use Application\Mapper\DbMapper;
+use Application\User\UserEntity;
+use Application\User\UserMapper;
+use Zend\Db\Adapter\Driver\ResultInterface;
+use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Stdlib\Hydrator\Reflection as ReflectionHydrator;
 
 class IndexController extends AbstractActionController
 {
+    /** @var DbMapper */
+    private $dbMapper;
+
+    public function __construct(DbMapper $mapper)
+    {
+        $this->dbMapper = $mapper;
+    }
+
     public function indexAction()
     {
+        $users = $this->dbMapper->fetchAllAdminUsers();
+
         return new ViewModel();
     }
 }

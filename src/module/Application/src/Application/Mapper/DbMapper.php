@@ -8,6 +8,7 @@ use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\Hydrator\Reflection as ReflectionHydrator;
 
+
 class DbMapper
 {
     private $dbAdapter;
@@ -26,6 +27,18 @@ class DbMapper
 
         return $this->hydrateResults($result, $baseEntity);
     }
+
+
+   public function fetchShoppingList($username)
+   	{
+   	   $shoppinglist = new \Application\Entity\ShoppingListEntity();
+   	   $items = array('glue','paste','toys','pizza','hotdog');
+   	   $shoppinglist->setUserName($username);
+   	   $shoppinglist->setShoppingList($items);
+   	   
+   	   return $shoppinglist;
+   	   
+   	}
 
     private function hydrateResults($results, $baseObject)
     {

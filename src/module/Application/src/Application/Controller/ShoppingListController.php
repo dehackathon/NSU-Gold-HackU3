@@ -14,8 +14,24 @@ use Zend\View\Model\ViewModel;
 
 class ShoppingListController extends AbstractActionController
 {
+
+    private $dbMapper;
+
+    public function __construct(DbMapper $mapper)
+    {
+        $this->dbMapper = $mapper;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        $shoppinglist = $this->dbMapper->fetchShoppingList('Aaron');
+
+        return new ViewModel(
+        	array('username' => $shoppinglist->getUserName,
+        	      'shoppinglist'=>$shoppinglist->getshoppinglist)
+        	      );
     }
+
 }
+
+

@@ -3,6 +3,7 @@
 namespace Application\Mapper;
 
 use Application\Db\dbAdapter;
+use Application\Entity\MemberEntity;
 use Application\Entity\ShoppingListEntity;
 use Zend\Db\Adapter\Driver\ResultInterface;
 use Zend\Db\ResultSet\HydratingResultSet;
@@ -100,6 +101,33 @@ class DbMapper
         catch(\Exception $e){
             return false;
         }
+    }
+
+    public function addNewMember(array $reg)
+    {
+        try {
+
+            $statement = $this->dbAdapter->query("insert into member(name, email) values('" . $reg['name'] . "','" . $reg['email'] . "')");
+
+            $result = $statement->execute();
+
+            $member = new MemberEntity();
+            $member->setEmail($reg['email']);
+            $member->setName($reg['name']);
+
+            return $member;
+        }
+        catch(\Exception $e){
+            return false;
+        }
+    }
+
+    public function deleteMember($email)
+    {
+        $statement = $this->dbAdapter->query("DELETE FROM member WHERE email = $email");
+        $result = $statement->execute();
+
+        return $result;
     }
 
     private function hydrateResults($results, $baseObject)

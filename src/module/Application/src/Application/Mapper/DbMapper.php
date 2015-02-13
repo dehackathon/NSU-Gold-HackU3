@@ -47,10 +47,11 @@ class DbMapper
 
             $statement = $this->dbAdapter->query("SELECT * FROM admin_table where username=\"" . $params['username'] . "\"");
             $result = $statement->execute();
+            $result->buffer();
 
-//            if($result->getAffectedRows() == -1){
-//                return false;
-//            }
+            if($result->getAffectedRows() == 0){
+                return false;
+            }
 
             /** @var \Application\Entity\AdminUserEntity $user */
             $user = $this->hydrateResults($result, $baseEntity);
@@ -147,7 +148,9 @@ class DbMapper
 
 
         if ($results instanceof ResultInterface && $results->isQueryResult()) {
-            $results->buffer();
+            if(!$results->isBuffered()){
+                $results->buffer();
+            }
             $resultSet = new HydratingResultSet(new ReflectionHydrator, new $baseObject);
             $resultSet->initialize($results);
 

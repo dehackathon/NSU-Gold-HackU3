@@ -13,7 +13,7 @@
                     <input type="text" class="form-control" id="split" placeholder="Roomie price">
                 </div>
                 <div class="col-x-2-2 col-xs-2">
-                    <button type="button" id="btn-add-item" class="btn btn-primary" data-loading-text="Adding..." autocomplete="off">Calculate</button>
+                    <button type="button" id="btn-add-item" class="btn btn-primary" onclick="myfunction()" data-loading-text="Adding..." autocomplete="off">Calculate</button>
                 </div>
 				<div class="row">    
        <div class="col-sm-4 col-xs-2">  
@@ -123,5 +123,14 @@ $(function() {
         reader.readAsDataURL(file);
     });  
 });
+
+function myfunction()
+{
+var first = document.getElementById("spent").value;
+var userList = document.querySelectorAll('input[type="checkbox"]:checked').length;
+var answer = parseFloat(first)/parseFloat(userList);
+var ans = answer;
+split.value=ans;
+}
 </script>
 

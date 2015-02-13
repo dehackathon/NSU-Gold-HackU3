@@ -27,8 +27,18 @@ class UserListController extends AbstractActionController
     public function indexAction()
     {
         //$users = $this->dbMapper->fetchAllAdminUsers();
+        $email = 'bob@nsu.com';
+        $collection = $this->dbMapper->fetchMembers($email);
 
-        return new ViewModel();
+        $view = new ViewModel();
+        $view->setVariable(
+            'email',
+            !empty($collection) ? $collection[0]->getEmail() : $email
+        );
+        $view->setVariable('listCollection', $collection);
+
+        return $view;
+
     }
 
     public function addAction()

@@ -95,9 +95,9 @@ return array(
 
         ),
         'user-list' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/user-list',
+                'route'    => '/user-list[/:action]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\UserList',
                     'action'     => 'index',

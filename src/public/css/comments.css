@@ -1,0 +1,11 @@
+#HCB_comment_box h3{
+  text-align: center;
+}
+#HCB_comment_form_box {
+  text-align: center;
+}
+#hcb_form{
+  padding: 10px;
+  text-align: left;
+  display: inline-block;
+}

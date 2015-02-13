@@ -449,6 +449,9 @@ span[data-cal-date]:hover {
   opacity: 0.1;
   cursor: default;
 }
+.cal-month-box {
+  background-color: #fff;
+}
 .cal-day-today {
   background-color: #e8fde7;
 }
@@ -484,18 +487,18 @@ span[data-cal-date]:hover {
 #cal-slide-content {
   padding: 20px;
   color: #ffffff;
-  background-image: url("../img/dark_wood.png");
+  background-color: #E6E6E6; /*-image: url("../img/dark_wood.png");
   -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);*/
 }
 #cal-slide-tick {
   background-image: url("../img/tick.png?2");
 }
 #cal-slide-content:hover {
-  background-color: transparent;
+  background-color: #eee;
 }
 #cal-slide-content a.event-item {
-  color: #ffffff;
+  color: black;
   font-weight: normal;
   line-height: 22px;
 }

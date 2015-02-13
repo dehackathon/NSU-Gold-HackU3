@@ -12,5 +12,6 @@ return array(
         'Application\Controller\ForgotPassword' => 'Application\Controller\Factory\ForgotPasswordControllerFactory',
         'Application\Controller\Calendar' => 'Application\Controller\Factory\CalendarControllerFactory',
         'Application\Controller\Home' => 'Application\Controller\Factory\HomeControllerFactory',
+        'Application\Controller\UserList' => 'Application\Controller\Factory\UserListControllerFactory',
     ),
 );

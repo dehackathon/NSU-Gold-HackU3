@@ -81,8 +81,28 @@ return array(
                             'action' => 'type',
                         )
                     ),
-                )
-            )
+                ),
+                'events' => array(
+                    'type' => 'segment',
+                    'options' => array(
+                        'route' => '/events',
+                        'defaults' => array(
+                            'action' => 'events',
+                        )
+                    ),
+                ),
+            ),
+
+        ),
+        'user-list' => array(
+            'type' => 'Zend\Mvc\Router\Http\Segment',
+            'options' => array(
+                'route'    => '/user-list[/:action]',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\UserList',
+                    'action'     => 'index',
+                ),
+            ),
         ),
         // The following is a route to simplify getting started creating
         // new controllers and actions without needing to create a new

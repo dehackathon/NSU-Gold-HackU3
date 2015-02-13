@@ -1,12 +1,32 @@
 <?php
 
-	namespace Application\Entity;
-	
-	class ShoppingListEntity{
-		private $username;
-		private $shoppinglist = array();
-		
+namespace Application\Entity;
 
+class ShoppingListEntity{
+    private $id;
+    private $username;
+    private $shoppinglist = array();
+    private $item;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    public function setItem($item)
+    {
+        $this->item = $item;
+    }
 
     public function getUserName()
     {
@@ -27,7 +47,6 @@
     {
         $this->shoppinglist = $shoppinglist;
     }
-
 }
 		
 		

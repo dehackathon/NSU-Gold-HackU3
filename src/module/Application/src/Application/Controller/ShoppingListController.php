@@ -11,11 +11,11 @@ namespace Application\Controller;
 
 use Application\Mapper\DbMapper;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
 class ShoppingListController extends AbstractActionController
 {
-
     private $dbMapper;
 
     public function __construct(DbMapper $mapper)
@@ -25,13 +25,46 @@ class ShoppingListController extends AbstractActionController
 
     public function indexAction()
     {
-        $shoppinglist = $this->dbMapper->fetchShoppingList('Aaron');
+        $collection = $this->dbMapper->fetchShoppingList('Aaron');
 
         $view = new ViewModel();
-        $view->setVariable('username', $shoppinglist->getUserName());
-        $view->setVariable('shoppinglist', $shoppinglist->getShoppingList());
+        $view->setVariable('username', $collection[0]->getUserName());
+        $view->setVariable('listCollection', $collection);
 
         return $view;
+    }
+
+    public function addAction()
+    {
+        $shoppinglist = $this->dbMapper->addShoppingListItem(array(
+            'item' => $this->getRequest()->getQuery('item'),
+            'username' => $this->getRequest()->getQuery('username')
+        ));
+
+        $data = array(
+            'success' => true,
+            'data' => array(
+                'id' => $shoppinglist->getId(),
+                'item' => $shoppinglist->getItem(),
+                'username' => $shoppinglist->getUserName()
+            )
+        );
+
+        return new JsonModel($data);
+    }
+
+    public function deleteAction()
+    {
+        $shoppinglist = $this->dbMapper->deleteShoppingListItem($this->getRequest()->getQuery('id'));
+
+        $data = array(
+            'success' => true,
+            'data' => array(
+                'id' => $this->getRequest()->getQuery('id')
+            )
+        );
+
+        return new JsonModel($data);
     }
 
 }

@@ -1,25 +1,67 @@
-<form>
-    <!-- title -->
-    <div class="header">
-        <p><strong>Shopping List</strong></p>
-    </div>
-    <!-- these are the textboxes to submit code -->
-    <div>
-        <?php echo $this->username; ?>
-
-        <ul>
-        <?php foreach($this->shoppinglist as $item): ?>
-            <li><?= $item ?></li>
+<div class="panel panel-default">
+    <div class="panel-heading"><h3>Shopping List</h3></div>
+    <div class="panel-body">
+        <?php foreach($this->listCollection as $shoppingList): ?>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="" id="<?php echo $shoppingList->getId(); ?>" />
+                    <?php echo $shoppingList->getItem(); ?>
+                </label>
+            </div>
         <?php endforeach; ?>
-        </ul>
-        <input type="text" class="button" id="item" name="item1" placeholder="Placeholder" value="" ><br>
-
+        <div class="form-group" id="add-item-group">
+            <div class="col-sm-8 col-xs-6">
+                <input type="text" class="form-control" id="item-add" placeholder="Add new item">
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <button type="button" id="btn-add-item" class="btn btn-primary" data-loading-text="Adding..." autocomplete="off">Add</button>
+            </div>
+        </div>
     </div>
-    <!-- buttons -->
-    <div>
-        <input type="submit" class="button2" id="submit" value="Add">
-        <input type="submit" class="button2" id="submit" value="Delete">
-        <input type="submit" class="button2" id="submit" value="Pay">
-
+    <div class="panel-footer">
+        <button type="submit" class="btn btn-default" id="btn-delete">Delete</button>
+        <button type="submit" class="btn btn-primary" id="btn-expense">Expense</button>
     </div>
-</form>
+</div>
+
+<script>
+    $('#btn-delete').on('click', function () {
+        $('input:checkbox').each(function () {
+            var sThisVal = (this.checked ? $(this).attr('id') : "");
+            if (sThisVal != "") {
+                $.ajax({
+                    url: "<?php echo $this->url('shopping-list'); ?>/delete",
+                    data: {
+                        id: sThisVal
+                    }
+                }).done(function (response) {
+                    $('#' + response.data.id).parent().parent().remove();
+                });
+            }
+        });
+
+    });
+
+    $('#btn-add-item').on('click', function () {
+        var $btn = $(this).button('loading');
+        $.ajax({
+            url: "<?php echo $this->url('shopping-list'); ?>/add",
+            data: {
+                item: $('#item-add').val(),
+                username: '<?php echo $this->username; ?>'
+            }
+        }).done(function(response) {
+            var divCheck = $('<div></div>').addClass('checkbox');
+            var labelCheck = $('<label></label>');
+            var inputCheck = $('<input type="checkbox" />');
+
+            labelCheck.append(inputCheck);
+            labelCheck.append(response.data.item);
+            divCheck.append(labelCheck);
+            $('#add-item-group').before(divCheck);
+
+            $('#item-add').val('');
+            $btn.button('reset');
+        });
+    });
+</script>

@@ -1,6 +1,5 @@
 /* General */
 
-
 body {
     background: url(/img/confectionary.png) repeat;
     font-family: 'Open Sans', sans-serif;
@@ -57,7 +56,6 @@ a {
 a:hover {
     color: black;
 }
-
 
 
 /* Fields and Button */
@@ -126,10 +124,13 @@ a:hover {
 
 /* Checkbox */
 
+/*
 input[type='checkbox'] {
     visibility: hidden;
 }
+*/
 
+/*
 input[type='checkbox'] + label span {
     display: inline-block;
     background: inherit;
@@ -142,8 +143,11 @@ input[type='checkbox'] + label span {
     cursor: pointer;
     transition: background .3s ease-in-out;
 }
+*/
 
+/*
 input[type='checkbox']:checked + label span {
     background: #FA4811;
     border: 2px solid #FA4811;
 }
+*/

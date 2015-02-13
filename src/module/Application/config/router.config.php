@@ -43,9 +43,9 @@ return array(
             ),
         ),
         'shopping-list' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/shopping-list',
+                'route'    => '/shopping-list[/:action]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\ShoppingList',
                     'action'     => 'index',

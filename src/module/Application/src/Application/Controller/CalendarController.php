@@ -71,27 +71,51 @@ class CalendarController extends AbstractActionController
                 ),
                 array(
                     'id' => 4,
-                    'title' => 'Event 1',
+                    'title' => 'Store',
                     'url' => 'http://example.com',
                     'class' => 'event-special',
-                    'start' => 1423845900000,
-                    'end' => 1423853100000
+                    'start' => 1424321880000,
+                    'end' => 1424321880000
                 ),
                 array(
                     'id' => 5,
-                    'title' => 'Event 1',
+                    'title' => 'Store',
                     'url' => 'http://example.com',
                     'class' => 'event-success',
-                    'start' => 1423845900000,
-                    'end' => 1423853100000
+                    'start' => 1424667480000,
+                    'end' => 1424667480000
                 ),
                 array(
                     'id' => 6,
-                    'title' => 'Event 1',
+                    'title' => 'Gym',
+                    'url' => 'http://example.com',
+                    'class' => 'event-info',
+                    'start' => 1424667480000,
+                    'end' => 1424667480000
+                ),
+                array(
+                    'id' => 6,
+                    'title' => 'Store',
                     'url' => 'http://example.com',
                     'class' => 'event-warning',
-                    'start' => 1423845900000,
-                    'end' => 1423853100000
+                    'start' => 1424149080000,
+                    'end' => 1424149080000
+                ),
+                array(
+                    'id' => 6,
+                    'title' => 'Store',
+                    'url' => 'http://example.com',
+                    'class' => 'event-info',
+                    'start' => 1422939480000,
+                    'end' => 1422939480000
+                ),
+                array(
+                    'id' => 6,
+                    'title' => 'Store',
+                    'url' => 'http://example.com',
+                    'class' => 'event-success',
+                    'start' => 1425185880000,
+                    'end' => 1425185880000
                 )
             )
         );

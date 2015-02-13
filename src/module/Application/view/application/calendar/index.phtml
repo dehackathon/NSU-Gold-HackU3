@@ -1,1 +1,13 @@
-Calendar
+<div id="calendar"></div>
+<?php
+$this->headLink()->appendStylesheet('/css/calendar.css');
+$this->headScript()->appendFile('https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js');
+$this->headScript()->appendFile('/js/calendar.js');
+?>
+<script type="text/javascript">
+    var calendar = $("#calendar").calendar(
+        {
+            tmpl_path: "/calendar/type/",
+            events_source: function () { return []; }
+        });
+</script>

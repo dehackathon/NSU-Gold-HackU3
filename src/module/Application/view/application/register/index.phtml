@@ -1,3 +1,49 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Sign Up</h3>
+        </div>
+        <div class="panel-body">
+            <form action="/register/post" method="post" name="register_form">
+                <div class="header">
+                    <p><strong>Roomie!</strong></p>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="button" id="name" name="name" placeholder="First Last">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="button" id="email" name="email" placeholder="johndoe@gmail.com">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="button" id="regusername" name="regusername" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="button" id="regpassword" name="regpassword" placeholder="Password"><br>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="button" id="confirmPass" name="confirmPass" placeholder="Confirm Password"><br>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="button" id="adminpass" name="adminpass" placeholder="Admin Password"><br>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="button" id="confirmAdminPass" name="confirmAdminPass" placeholder="Confirm Admin Password"><br>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="button" id="submit" value="Register"><br>
+                </div>
+                <div class="form-group">
+                    <a href="<?php echo $this->url('login'); ?>">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+</div>
+
+<?php
+/*
 <form action="/register/post" method="post" name="register_form">
     <div class="header">
         <p><strong>Sign up</strong></p>
@@ -21,3 +67,5 @@
 
     </div>
 </form>
+*/
+?>

@@ -25,6 +25,9 @@
 </div>
 
 <script>
+
+//Deletes items from shopping list
+/*
     $('#btn-delete').on('click', function () {
         $('input:checkbox').each(function () {
             var sThisVal = (this.checked ? $(this).attr('id') : "");
@@ -41,16 +44,18 @@
         });
 
     });
-
+    */
     $('#btn-add-item').on('click', function () {
-        var $btn = $(this).button('loading');
+        var $btn = $(this).button('loading');  //Loading button appears
         $.ajax({
             url: "<?php echo $this->url('shopping-list'); ?>/add",
             data: {
-                item: $('#item-add').val(),
-                username: '<?php echo $this->username; ?>'
+                item: $('#item-add').val(), //Button's name is add item
+                username: '<?php echo $this->username; ?>' 
             }
-        }).done(function(response) {
+            
+            
+        }).done(function(response) { //What happens after button is pushed
             var divCheck = $('<div></div>').addClass('checkbox');
             var labelCheck = $('<label></label>');
             var inputCheck = $('<input type="checkbox" />');
@@ -62,6 +67,7 @@
 
             $('#item-add').val('');
             $btn.button('reset');
+            
         });
-    });
+    });  
 </script>

@@ -29,8 +29,47 @@ class ExpensesController extends AbstractActionController
         if (!Login::isLoggedIn()) {
             $this->redirect()->toRoute('login');
         }
-        //$users = $this->dbMapper->fetchAllAdminUsers();
+        $members = $this->dbMapper->fetchMembers();
+        $this->layout()->setVariable('members', $members);
 
-        return new ViewModel();
+        $email = 'bob@nsu.com';
+        $collection = $this->dbMapper->fetchMembers($email);
+
+        $view = new ViewModel();
+        $view->setVariable(
+            'email',
+            !empty($collection) ? $collection[0]->getEmail() : $email
+        );
+        $view->setVariable('listCollection', $collection);
+
+        return $view;
     }
+    public function uploadAction()
+    {
+      return new viewModel();
+    
+    }
+    
+    /*
+    copied from shopping list
+    
+    public function addAction()
+    {
+        $shoppinglist = $this->dbMapper->addShoppingListItem(array(
+            'item' => $this->getRequest()->getQuery('item'),
+            'username' => $this->getRequest()->getQuery('username')
+        ));
+
+        $data = array(
+            'success' => true,
+            'data' => array(
+                'id' => $shoppinglist->getId(),
+                'item' => $shoppinglist->getItem(),
+                'username' => $shoppinglist->getUserName()
+            )
+        );
+
+        return new JsonModel($data);
+    }
+    */
 }

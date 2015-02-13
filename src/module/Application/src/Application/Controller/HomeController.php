@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Application\Utility\Login;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
@@ -25,6 +26,9 @@ class HomeController extends AbstractActionController
 
     public function indexAction()
     {
+        if (!Login::isLoggedIn()) {
+            $this->redirect()->toRoute('login');
+        }
         //$users = $this->dbMapper->fetchAllAdminUsers();
 
         return new ViewModel();

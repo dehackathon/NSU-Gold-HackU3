@@ -48,6 +48,10 @@ class DbMapper
             $statement = $this->dbAdapter->query("SELECT * FROM admin_table where username=\"" . $params['username'] . "\"");
             $result = $statement->execute();
 
+//            if($result->getAffectedRows() == -1){
+//                return false;
+//            }
+
             /** @var \Application\Entity\AdminUserEntity $user */
             $user = $this->hydrateResults($result, $baseEntity);
         } catch (\Exception $e) {

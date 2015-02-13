@@ -1,6 +1,55 @@
 <?php $this->headLink()->appendStylesheet('/css/comments.css'); ?>
-<!-- begin htmlcommentbox.com -->
+<?php $this->headLink()->appendStylesheet('/css/carousel.css'); ?>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1><a href="http://hackathon.dominionenterprises.com/" target="_blank">Hackathon</a></h1>
+                    <p>Chris and Aaron going to be at the hackathon from 8:00 to 5:00, 150 Granby Street, Norfolk, VA 23510</p>
+                    <p><a class="btn btn-lg btn-primary" href="/calendar" role="button">Calendar</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAGZmZgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1><a href="http://hackathon.dominionenterprises.com/" target="_blank">Party</a></h1>
+                    <p>Everyone going out after hackathon to celebrate!</p>
+                    <p><a class="btn btn-lg btn-primary" href="/calendar" role="button">Calendar</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item active">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1><a href="/shopping-list">Shopping</a></h1>
+                    <p>James is going shopping this afternoon.  Add requests to the shopping list by 1:00.</p>
+                    <p><a class="btn btn-lg btn-primary" href="/calendar" role="button">Calendar</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
 <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
 <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
 <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=(""+window.location).replace(/'/g,"%27") || hcb_user.PAGE, h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
-<!-- end htmlcommentbox.com -->

@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Application\Utility\Login;
 use Application\ViewModel\TypeViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
@@ -27,6 +28,9 @@ class CalendarController extends AbstractActionController
 
     public function indexAction()
     {
+        if (!Login::isLoggedIn()) {
+            $this->redirect()->toRoute('login');
+        }
         //$users = $this->dbMapper->fetchAllAdminUsers();
 
         return new ViewModel();

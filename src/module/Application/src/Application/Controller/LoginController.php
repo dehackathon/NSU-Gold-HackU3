@@ -9,7 +9,9 @@
 
 namespace Application\Controller;
 
+use Application\Utility\Login;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
 
@@ -25,10 +27,14 @@ class LoginController extends AbstractActionController
 
     public function indexAction()
     {
-        $view = new ViewModel();
-        $view->setTerminal(true);
+        if(Login::isLoggedIn()) {
+            $this->redirect()->toRoute('home');
+        } else {
+            $view = new ViewModel();
+            $view->setTerminal(true);
 
-        return $view;
+            return $view;
+        }
     }
 
     public function postAction()
@@ -37,13 +43,22 @@ class LoginController extends AbstractActionController
 
         if( $this->dbMapper->compareLogin($params))
         {
+            $sessionUser = new Container('user');
+            $sessionUser->username = $params['username'];
+            $sessionUser->loggedIn = true;
             $this->redirect()->toRoute('home');
-
         }
         else{
 
              $this->redirect()->toRoute('login');
         }
+    }
+
+    public function logoutAction()
+    {
+        $sessionUser = new Container('user');
+        $sessionUser->getManager()->getStorage()->clear('user');
+        $this->redirect()->toRoute('login');
     }
 }
 

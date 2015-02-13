@@ -1,4 +1,15 @@
+<html lang="en">
+<head>
 
+        <meta charset="utf-8">
+				<link rel="stylesheet" href="/css/upload.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+        <!-- Le styles -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        
+    </head>
+  <body>
 <div class="container">
 
     <div class="panel panel-default">
@@ -9,16 +20,33 @@
                 <div class="col-sm-4 col-xs-4">
                     <input type="text" class="form-control" id="item-add" placeholder="Amount spent">
                 </div>
-                <div class="col-sm-4 col-xs-4">
+                <div class="col-xs-2-4 col-xs-2">
                     <input type="text" class="form-control" id="item-add" placeholder="Roomie price">
                 </div>
-                <div class="col-sm-2 col-xs-2">
+                <div class="col-x-2-2 col-xs-2">
                     <button type="button" id="btn-add-item" class="btn btn-primary" data-loading-text="Adding..." autocomplete="off">Calculate</button>
                 </div>
-                <div class="col-sm-2 col-xs-2">
-                    <button type="button" id="btn-add-item" class="btn btn-primary" data-loading-text="Adding..." autocomplete="off">Upload</button>
-                </div>
+				<div class="row">    
+       <div class="col-sm-4 col-xs-2">  
+            <!-- image-preview-filename input [CUT FROM HERE]-->
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                    </div>
+                </span>
+            </div><!-- /input-group image-preview [TO HERE]--> 
+        </div>
             </div>
+</div>
             <div class="col-sm-4 col-xs-4" style="margin-top: 10px;">
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -45,44 +73,69 @@
         </div>
     </div>
 </div>
-    <!--script>
-        $('#btn-delete').on('click', function () {
-            $('input:checkbox').each(function () {
-                var sThisVal = (this.checked ? $(this).attr('id') : "");
-                if (sThisVal != "") {
-                    $.ajax({
-                        url: "/shopping-list/delete",
-                        data: {
-                            id: sThisVal
-                        }
-                    }).done(function (response) {
-                        $('#' + response.data.id).parent().parent().remove();
-                    });
-                }
-            });
 
-        });
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript"> 
+$(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
 
-        $('#btn-add-item').on('click', function () {
-            var $btn = $(this).button('loading');
-            $.ajax({
-                url: "/shopping-list/add",
-                data: {
-                    item: $('#item-add').val(),
-                    username: 'Aaron'
-                }
-            }).done(function(response) {
-                var divCheck = $('<div></div>').addClass('checkbox');
-                var labelCheck = $('<label></label>');
-                var inputCheck = $('<input type="checkbox" />');
-
-                labelCheck.append(inputCheck);
-                labelCheck.append(response.data.item);
-                divCheck.append(labelCheck);
-                $('#add-item-group').before(divCheck);
-
-                $('#item-add').val('');
-                $btn.button('reset');
-            });
-        });
-    </script-->
+$(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'bottom'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    }); 
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });      
+        var file = this.files[0];
+		
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+</script>
+</body>
+</html>

@@ -45,7 +45,7 @@ class DbMapper
     {
         try {
             $statement = $this->dbAdapter->query("INSERT INTO admin_table(name,email,username,admin_password,password)
-        VALUES('".$reg['name']."','".$reg['email']."','".$reg['username']."','".$reg['admin_password']."','".$reg['password']."')");
+        VALUES('".$reg['name']."','".$reg['email']."','".$reg['regusername']."','".$reg['adminpass']."','".$reg['regpassword']."')");
 
 
             $statement->execute();

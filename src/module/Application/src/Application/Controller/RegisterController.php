@@ -31,20 +31,9 @@ class RegisterController extends AbstractActionController
 
     public function postAction()
     {
+        $params = $this->params()->fromPost();
 
-        $view = new ViewModel();
-        $view->setTerminal(true);
-
-//        $params = $this->params()->fromQuery();
-        $user = array(
-            'name' => 'Aaron',
-            'email' => 'aa@yahoo.com',
-            'username' => 'username',
-            'admin_password' => 'password',
-            'password' => 'password2'
-        );
-
-       if( $this->dbMapper->insertNewUser($user))
+       if( $this->dbMapper->insertNewUser($params))
        {
 
            $this->redirect()->toRoute('login');

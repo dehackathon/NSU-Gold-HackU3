@@ -23,11 +23,11 @@ return array(
             ),
         ),
         'login' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/',
+                'route'    => '/[:login[/:action]]',
                 'defaults' => array(
-                    'controller' => 'Application\Controller\Index',
+                    'controller' => 'Application\Controller\Login',
                     'action'     => 'index',
                 ),
             ),

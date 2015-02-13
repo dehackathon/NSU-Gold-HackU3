@@ -41,6 +41,28 @@ class DbMapper
    	   
    	}
 
+    public function compareLogin($params)
+    {
+        try {
+            $baseEntity = "\\Application\\Entity\\AdminUserEntity";
+
+            $statement = $this->dbAdapter->query("SELECT * FROM admin_table where username=\"" . $params['username'] . "\"");
+            $result = $statement->execute();
+
+            /** @var \Application\Entity\AdminUserEntity $user */
+            $user = $this->hydrateResults($result, $baseEntity);
+        }catch (\Exception $e){
+            return false;
+        }
+
+        if(($user[0]->getAdminPassword()==$params['password']) or ($user[0]->getPassword()==$params['password'])){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function insertNewUser(array $reg)
     {
         try {
@@ -53,11 +75,7 @@ class DbMapper
         }
         catch(\Exception $e){
             return false;
-
         }
-
-
-
     }
 
     private function hydrateResults($results, $baseObject)

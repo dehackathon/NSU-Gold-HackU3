@@ -25,8 +25,30 @@ class LoginController extends AbstractActionController
 
     public function indexAction()
     {
-        //$users = $this->dbMapper->fetchAllAdminUsers();
+        $view = new ViewModel();
+        $view->setTerminal(true);
 
-        return new ViewModel();
+        return $view;
+    }
+
+    public function postAction()
+    {
+        $params = $this->params()->fromPost();
+
+        if( $this->dbMapper->compareLogin($params))
+        {
+            $this->redirect()->toRoute('home');
+
+        }
+        else{
+
+             $this->redirect()->toRoute('login');
+        }
     }
 }
+
+
+
+
+
+

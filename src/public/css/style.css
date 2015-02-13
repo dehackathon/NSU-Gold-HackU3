@@ -1,14 +1,11 @@
 /* General */
 
-/*
 body {
     background: url(/img/confectionary.png) repeat;
     font-family: 'Open Sans', sans-serif;
     font-size: 11px;
 }
-*/
 
-/*
 form {
     background-color: #E6E6E6;
     background-repeat: no-repeat;
@@ -19,9 +16,7 @@ form {
     margin: 50px auto;
     border-radius: 4px;
 }
-*/
 
-/*
 .header {
     font-family: 'Open Sans', sans-serif;
     color: #4327f5;
@@ -61,12 +56,10 @@ a {
 a:hover {
     color: black;
 }
-*/
 
 
 /* Fields and Button */
 
-/*
 .button {
     width: 80%;
     height: 42px;
@@ -82,9 +75,7 @@ a:hover {
     font-size: 16px;
     color: #737373;
 }
-*/
 
-/*
 .button2 {
     width: 40%;
     height: 42px;
@@ -100,9 +91,7 @@ a:hover {
     font-size: 16px;
     color: #737373;
 }
-*/
 
-/*
 #submit {
     background-color: #4327f5;
     font-size: 24px;
@@ -118,7 +107,6 @@ a:hover {
 #submit:hover {
     background-color: #6d58f7;
 }
-*/
 
 
 

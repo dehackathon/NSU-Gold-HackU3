@@ -124,12 +124,19 @@ class DbMapper
 
     public function deleteMember($email)
     {
-        $statement = $this->dbAdapter->query("DELETE FROM member WHERE email = $email");
+        $statement = $this->dbAdapter->query("DELETE FROM member WHERE email = '$email'");
         $result = $statement->execute();
 
         return $result;
     }
 
+    public function fetchMembers(){
+        $statement = $this->dbAdapter->query("SELECT * FROM `member` ");
+        $result = $statement->execute();
+
+        $baseEntity = "\\Application\\Entity\\MemberEntity";
+        return $this->hydrateResults($result, $baseEntity);
+    }
     private function hydrateResults($results, $baseObject)
     {
         $returnValues = array();

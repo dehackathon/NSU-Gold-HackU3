@@ -9,12 +9,12 @@
         <input type="submit" class="button" id="submit" value="SIGN IN"><br>
     </div>
     <div class="optional">
-        <a href="#">Forgot password?</a>
+        <a href="<?php echo $this->url('forgot-password'); ?>">Forgot password?</a>
         <span id="space"></span>
         <!--input type="checkbox" id="remember" name="remember">
           <label for="remember"><span></span>Remember me</label-->
     </div>
     <div class="footer">
-        <p><span><a href="register.html">Register</a></span></p>
+        <p><span><a href="<?php echo $this->url('register'); ?>">Register</a></span></p>
     </div>
 </form>

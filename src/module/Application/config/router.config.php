@@ -22,12 +22,22 @@ return array(
                 ),
             ),
         ),
-        'home' => array(
+        'login' => array(
             'type' => 'Zend\Mvc\Router\Http\Literal',
             'options' => array(
                 'route'    => '/',
                 'defaults' => array(
                     'controller' => 'Application\Controller\Index',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
+        'home' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/home',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\Home',
                     'action'     => 'index',
                 ),
             ),
@@ -48,6 +58,16 @@ return array(
                 'route'    => '/expenses',
                 'defaults' => array(
                     'controller' => 'Application\Controller\Expenses',
+                    'action'     => 'index',
+                ),
+            ),
+        ),
+        'calendar' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/calendar',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\Calendar',
                     'action'     => 'index',
                 ),
             ),

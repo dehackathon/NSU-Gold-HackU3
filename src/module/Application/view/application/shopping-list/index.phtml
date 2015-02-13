@@ -3,19 +3,17 @@
     <div class="header">
         <p><strong>Shopping List</strong></p>
     </div>
-    <!-- these are the 10 textboxes to submit code -->
+    <!-- these are the textboxes to submit code -->
     <div>
-        <?php echo $info['username']; ?>
-        <input type="text" class="button" id="item" name="item1" placeholder="Enter item" value="" ><br>
-        <input type="text" class="button" id="item" name="item2" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item3" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item4" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item5" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item6" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item7" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item8" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item9" placeholder="Enter item"><br>
-        <input type="text" class="button" id="item" name="item" placeholder="Enter item"><br>
+        <?php echo $this->username; ?>
+
+        <ul>
+        <?php foreach($this->shoppinglist as $item): ?>
+            <li><?= $item ?></li>
+        <?php endforeach; ?>
+        </ul>
+        <input type="text" class="button" id="item" name="item1" placeholder="Placeholder" value="" ><br>
+
     </div>
     <!-- buttons -->
     <div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<?php
+
+require_once('connection.php');
+	//session_start();
+
+	$link=mysql_connect('connection.php');
+
+	echo 'Cnnected successfully';
+
+$result = mysql_query("SELECT * FROM shoppinglist WHERE username='Aaron'");
+$info = mysql_fetch_array( $result )
+
+
+?>
+<html lang="en">
+  <head>
+	<!-- THIS IS HOW YOU COMMENT -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping List Page</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+	<form>
+		<!-- title -->
+		<div class="header">
+		<p><strong>Shopping List</strong></p>
+		</div>
+		<!-- these are the 10 textboxes to submit code -->
+		<div>
+		<?php echo $info['username']; ?>
+			<input type="text" class="button" id="item" name="item1" placeholder="Enter item" value="" ><br>
+			<input type="text" class="button" id="item" name="item2" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item3" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item4" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item5" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item6" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item7" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item8" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item9" placeholder="Enter item"><br>
+			<input type="text" class="button" id="item" name="item" placeholder="Enter item"><br>
+		</div>
+		<!-- buttons -->
+		<div>
+			<input type="submit" class="button2" id="submit" value="Add">
+			<input type="submit" class="button2" id="submit" value="Delete">
+			<input type="submit" class="button2" id="submit" value="Pay">
+
+		</div>
+	</form>
+  </body>
+  
+</html>

@@ -9,13 +9,31 @@
 
 namespace Application\Controller;
 
+use Application\Mapper\DbMapper;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class ShoppingListController extends AbstractActionController
 {
+
+    private $dbMapper;
+
+    public function __construct(DbMapper $mapper)
+    {
+        $this->dbMapper = $mapper;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        $shoppinglist = $this->dbMapper->fetchShoppingList('Aaron');
+
+        $view = new ViewModel();
+        $view->setVariable('username', $shoppinglist->getUserName());
+        $view->setVariable('shoppinglist', $shoppinglist->getShoppingList());
+
+        return $view;
     }
+
 }
+
+

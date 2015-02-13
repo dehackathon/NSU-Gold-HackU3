@@ -10,5 +10,7 @@ return array(
         'Application\Controller\Register' => 'Application\Controller\Factory\RegisterControllerFactory',
         'Application\Controller\Login' => 'Application\Controller\Factory\LoginControllerFactory',
         'Application\Controller\ForgotPassword' => 'Application\Controller\Factory\ForgotPasswordControllerFactory',
+        'Application\Controller\Calendar' => 'Application\Controller\Factory\CalendarControllerFactory',
+        'Application\Controller\Home' => 'Application\Controller\Factory\HomeControllerFactory',
     ),
 );

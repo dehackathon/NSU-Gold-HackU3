@@ -13,7 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
 
-class LoginController extends AbstractActionController
+class HomeController extends AbstractActionController
 {
     /** @var DbMapper */
     private $dbMapper;

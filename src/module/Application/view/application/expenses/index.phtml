@@ -36,7 +36,7 @@
         </div>
             </div>
 </div>
-            <div class="col-sm-4 col-xs-4" style="margin-top: 10px;">
+            <!--<div class="col-sm-4 col-xs-4" style="margin-top: 10px;">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <input type="checkbox" aria-label="...">
@@ -54,6 +54,16 @@
                         <input type="checkbox" aria-label="...">
                         Vestibulum at eros</li>
                 </ul>
+            </div>*/-->
+            <div class="col-sm-4 col-xs-4" style="margin-top: 10px;">
+            <ul class="list-group">
+            <?php foreach($this->listCollection as $member): ?>
+                <li class="list-group-item">
+                        <input type="checkbox" class="" id="<?php echo $member->getEmail(); ?>" />
+                        <?php echo $member->getEmail(); ?>
+                </li>
+            <?php endforeach; ?>
+            </ul>
             </div>
         </div>
 

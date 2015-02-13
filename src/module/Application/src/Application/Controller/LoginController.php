@@ -31,7 +31,7 @@ class LoginController extends AbstractActionController
             $this->redirect()->toRoute('home');
         } else {
             $view = new ViewModel();
-//            $view->setTerminal(true);
+            $view->setTerminal(true);
 
             return $view;
         }

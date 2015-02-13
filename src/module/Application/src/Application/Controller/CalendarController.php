@@ -11,6 +11,7 @@ namespace Application\Controller;
 
 use Application\ViewModel\TypeViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
 
@@ -35,5 +36,23 @@ class CalendarController extends AbstractActionController
     {
         $type = $this->params()->fromRoute('type');
         return new TypeViewModel($type);
+    }
+
+    public function eventsAction()
+    {
+        $data = array(
+            'success' => 1,
+            'result' => array(
+                array(
+                    'id' => 2,
+                    'title' => 'Event 1',
+                    'url' => 'http://example.com',
+                    'class' => 'event-important',
+                    'start' => 1423803600000,
+                    'end' => 1423803600100
+                )
+            )
+        );
+        return new JsonModel($data);
     }
 }

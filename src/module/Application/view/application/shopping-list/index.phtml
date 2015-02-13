@@ -27,7 +27,7 @@
 <script>
 
 //Deletes items from shopping list
-/*
+
     $('#btn-delete').on('click', function () {
         $('input:checkbox').each(function () {
             var sThisVal = (this.checked ? $(this).attr('id') : "");
@@ -44,7 +44,7 @@
         });
 
     });
-    */
+
     $('#btn-add-item').on('click', function () {
         var $btn = $(this).button('loading');  //Loading button appears
         $.ajax({

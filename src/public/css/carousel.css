@@ -7,6 +7,11 @@ body {
   color: #5a5a5a;
 }
 
+.titleLink:hover{
+  color: #265a88;
+  text-decoration:none;
+}
+
 .carousel-caption p {
   margin-bottom: 20px;
   font-size: 17px;

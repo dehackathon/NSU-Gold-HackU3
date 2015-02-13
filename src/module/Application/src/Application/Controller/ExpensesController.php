@@ -43,4 +43,32 @@ class ExpensesController extends AbstractActionController
 
         return $view;
     }
+    public function uploadAction()
+    {
+      return new viewModel();
+    
+    }
+    
+    /*
+    copied from shopping list
+    
+    public function addAction()
+    {
+        $shoppinglist = $this->dbMapper->addShoppingListItem(array(
+            'item' => $this->getRequest()->getQuery('item'),
+            'username' => $this->getRequest()->getQuery('username')
+        ));
+
+        $data = array(
+            'success' => true,
+            'data' => array(
+                'id' => $shoppinglist->getId(),
+                'item' => $shoppinglist->getItem(),
+                'username' => $shoppinglist->getUserName()
+            )
+        );
+
+        return new JsonModel($data);
+    }
+    */
 }

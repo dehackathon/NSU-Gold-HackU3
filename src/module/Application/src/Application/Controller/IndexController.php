@@ -30,7 +30,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $users = $this->dbMapper->fetchAllAdminUsers();
+       
 
         return new ViewModel();
     }

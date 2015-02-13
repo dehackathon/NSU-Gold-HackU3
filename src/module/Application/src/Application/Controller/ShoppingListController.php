@@ -25,10 +25,14 @@ class ShoppingListController extends AbstractActionController
 
     public function indexAction()
     {
-        $collection = $this->dbMapper->fetchShoppingList('Aaron');
+        $username = 'Aaron';
+        $collection = $this->dbMapper->fetchShoppingList($username);
 
         $view = new ViewModel();
-        $view->setVariable('username', $collection[0]->getUserName());
+        $view->setVariable(
+            'username',
+            !empty($collection) ? $collection[0]->getUserName() : $username
+        );
         $view->setVariable('listCollection', $collection);
 
         return $view;

@@ -1,23 +1,71 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><h3>Shopping List</h3></div>
+    <div class="panel-body">
+        <?php foreach($this->shoppinglist as $item): ?>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="" />
+                    <?php echo $item; ?>
+                </label>
+            </div>
+        <?php endforeach; ?>
+        <div class="form-group" id="add-item-group">
+            <div class="col-sm-8 col-xs-6">
+                <input type="text" class="form-control" id="item-add" placeholder="Add new item">
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <button type="button" id="btn-add-item" class="btn btn-primary" data-loading-text="Adding..." autocomplete="off">Add</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button type="submit" class="btn btn-default">Delete</button>
+        <button type="submit" class="btn btn-primary">Expense</button>
+    </div>
+</div>
+
+<script>
+    $('#btn-add-item').on('click', function () {
+        var $btn = $(this).button('loading');
+        $.ajax({
+            url: "<?php echo $this->url('shopping-list'); ?>/add",
+            data: {
+                item: $('#item-add').val(),
+                username: '<?php echo $this->username; ?>'
+            }
+        }).done(function(response) {
+            var divCheck = $('<div></div>').addClass('checkbox');
+            var labelCheck = $('<label></label>');
+            var inputCheck = $('<input type="checkbox" />');
+
+            labelCheck.append(inputCheck);
+            labelCheck.append(response.data.item);
+            divCheck.append(labelCheck);
+            $('#add-item-group').before(divCheck);
+
+            $btn.button('reset');
+        });
+    })
+</script>
+
 <form>
     <!-- title -->
     <div class="header">
         <p><strong>Shopping List</strong></p>
     </div>
     <!-- these are the 10 textboxes to submit code -->
-    <div>
-        <?php echo $this->username; ?>
-
-        <?php foreach($this->shoppinglist as $item): ?>
-            <input type="text" class="button" id="item" name="item1" placeholder="<?= $item ?>" value="" ><br>
-
-        <?php endforeach; ?>
-
-    </div>
+    <?php foreach($this->shoppinglist as $item): ?>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" class="form-control"/>
+                <?php echo $item; ?>
+            </label>
+        </div>
+    <?php endforeach; ?>
     <!-- buttons -->
     <div>
         <input type="submit" class="button2" id="submit" value="Add">
         <input type="submit" class="button2" id="submit" value="Delete">
         <input type="submit" class="button2" id="submit" value="Pay">
-
     </div>
 </form>

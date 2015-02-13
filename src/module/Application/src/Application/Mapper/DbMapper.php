@@ -3,6 +3,7 @@
 namespace Application\Mapper;
 
 use Application\Db\dbAdapter;
+use Application\Entity\ShoppingListEntity;
 use Zend\Db\Adapter\Driver\ResultInterface;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -40,6 +41,25 @@ class DbMapper
    	   return $shoppinglist;
    	   
    	}
+
+    public function addShoppingListItem($data)
+    {
+        /** @var \Application\Entity\ShoppingListEntity $shoppinglist */
+        $shoppinglist = new ShoppingListEntity();
+        //$shoppinglist->setUserName($data['username']);
+        //$shoppinglist->setItem($data['item']);
+        $item = $data['item'];
+        $username = $data['username'];
+
+        $statement = $this->dbAdapter->query("INSERT INTO shoppinglist(`item`, `username`) VALUES('$item', '$username')");
+        $result = $statement->execute();
+
+        $shoppinglist->setItem($item);
+        $shoppinglist->setUserName($username);
+        $shoppinglist->setId($result->getGeneratedValue());
+
+        return $shoppinglist;
+    }
 
     private function hydrateResults($results, $baseObject)
     {

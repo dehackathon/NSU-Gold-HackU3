@@ -3,15 +3,17 @@
     <div class="header">
         <p><strong>Shopping List</strong></p>
     </div>
-    <!-- these are the 10 textboxes to submit code -->
+    <!-- these are the textboxes to submit code -->
     <div>
         <?php echo $this->username; ?>
 
-        <? foreach($this->shoppinglist as $item): ?>
-            <input type="text" class="button" id="item" name="item1" placeholder="Enter item" value="" ><br>
-
+        <ul>
+        <?php foreach($this->shoppinglist as $item): ?>
+            <li><?= $item ?></li>
         <?php endforeach; ?>
-    
+        </ul>
+        <input type="text" class="button" id="item" name="item1" placeholder="Placeholder" value="" ><br>
+
     </div>
     <!-- buttons -->
     <div>

@@ -3,9 +3,9 @@
 return array(
     'routes' => array(
         'register' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/register',
+                'route'    => '/register[/:action]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\Register',
                     'action'     => 'index',

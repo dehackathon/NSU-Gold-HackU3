@@ -12,6 +12,7 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
+use Zend\View\View;
 
 class RegisterController extends AbstractActionController
 {
@@ -25,8 +26,32 @@ class RegisterController extends AbstractActionController
 
     public function indexAction()
     {
-        //$users = $this->dbMapper->fetchAllAdminUsers();
-
         return new ViewModel();
+    }
+
+    public function postAction()
+    {
+
+        $view = new ViewModel();
+        $view->setTerminal(true);
+
+//        $params = $this->params()->fromQuery();
+        $user = array(
+            'name' => 'Aaron',
+            'email' => 'aa@yahoo.com',
+            'username' => 'username',
+            'admin_password' => 'password',
+            'password' => 'password2'
+        );
+
+       if( $this->dbMapper->insertNewUser($user))
+       {
+
+           $this->redirect()->toRoute('login');
+       }
+        else{
+
+            $this->redirect()->toRoute('register');
+        }
     }
 }

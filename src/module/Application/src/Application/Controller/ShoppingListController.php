@@ -10,6 +10,7 @@
 namespace Application\Controller;
 
 use Application\Mapper\DbMapper;
+use Application\Utility\Login;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
@@ -25,6 +26,10 @@ class ShoppingListController extends AbstractActionController
 
     public function indexAction()
     {
+        if (!Login::isLoggedIn()) {
+            $this->redirect()->toRoute('login');
+        }
+
         $username = 'Aaron';
         $collection = $this->dbMapper->fetchShoppingList($username);
 

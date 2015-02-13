@@ -9,10 +9,10 @@
 
 namespace Application\Controller;
 
+use Application\Utility\Login;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
-use Zend\View\View;
 
 class RegisterController extends AbstractActionController
 {
@@ -26,6 +26,9 @@ class RegisterController extends AbstractActionController
 
     public function indexAction()
     {
+        if (!Login::isLoggedIn()) {
+            $this->redirect()->toRoute('login');
+        }
         return new ViewModel();
     }
 

@@ -33,7 +33,7 @@
         <div class="container">
             <?php echo $this->content; ?>
             <hr>
-            <?php echo $this->render('partials/footer'); ?>
+            <?php echo $this->partial('partials/footer', array('members', $this->members)); ?>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
     </body>

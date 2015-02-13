@@ -29,6 +29,8 @@ class ShoppingListController extends AbstractActionController
         if (!Login::isLoggedIn()) {
             $this->redirect()->toRoute('login');
         }
+        $members = $this->dbMapper->fetchMembers();
+        $this->layout()->setVariable('members', $members);
 
         $username = 'Aaron';
         $collection = $this->dbMapper->fetchShoppingList($username);

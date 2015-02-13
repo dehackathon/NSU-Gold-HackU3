@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Mapper\DbMapper;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Config\SessionConfig;

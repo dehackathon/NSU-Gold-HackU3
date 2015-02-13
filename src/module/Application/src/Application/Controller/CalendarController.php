@@ -31,7 +31,8 @@ class CalendarController extends AbstractActionController
         if (!Login::isLoggedIn()) {
             $this->redirect()->toRoute('login');
         }
-        //$users = $this->dbMapper->fetchAllAdminUsers();
+        $members = $this->dbMapper->fetchMembers();
+        $this->layout()->setVariable('members', $members);
 
         return new ViewModel();
     }

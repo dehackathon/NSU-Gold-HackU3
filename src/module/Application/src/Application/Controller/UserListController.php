@@ -26,6 +26,8 @@ class UserListController extends AbstractActionController
 
     public function indexAction()
     {
+        $members = $this->dbMapper->fetchMembers();
+        $this->layout()->setVariable('members', $members);
         //$users = $this->dbMapper->fetchAllAdminUsers();
         $email = 'bob@nsu.com';
         $collection = $this->dbMapper->fetchMembers($email);

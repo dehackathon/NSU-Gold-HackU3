@@ -39,6 +39,27 @@ class DbMapper
         return $this->hydrateResults($result, $baseEntity);
    	}
 
+    public function compareLogin($params)
+    {
+        try {
+            $baseEntity = "\\Application\\Entity\\AdminUserEntity";
+
+            $statement = $this->dbAdapter->query("SELECT * FROM admin_table where username=\"" . $params['username'] . "\"");
+            $result = $statement->execute();
+
+            /** @var \Application\Entity\AdminUserEntity $user */
+            $user = $this->hydrateResults($result, $baseEntity);
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        if (isset($user[0]) && ($user[0]->getAdminPassword() == $params['password']) or ($user[0]->getPassword() == $params['password'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function addShoppingListItem($data)
     {
         /** @var \Application\Entity\ShoppingListEntity $shoppinglist */
@@ -70,7 +91,7 @@ class DbMapper
     {
         try {
             $statement = $this->dbAdapter->query("INSERT INTO admin_table(name,email,username,admin_password,password)
-        VALUES('".$reg['name']."','".$reg['email']."','".$reg['username']."','".$reg['admin_password']."','".$reg['password']."')");
+        VALUES('".$reg['name']."','".$reg['email']."','".$reg['regusername']."','".$reg['adminpass']."','".$reg['regpassword']."')");
 
 
             $statement->execute();
@@ -78,7 +99,6 @@ class DbMapper
         }
         catch(\Exception $e){
             return false;
-
         }
     }
 

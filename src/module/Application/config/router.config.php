@@ -53,9 +53,9 @@ return array(
             ),
         ),
         'expenses' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/expenses',
+                'route'    => '/expenses[/:action]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\Expenses',
                     'action'     => 'index',

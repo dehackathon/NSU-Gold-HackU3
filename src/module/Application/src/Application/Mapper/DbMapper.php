@@ -32,14 +32,11 @@ class DbMapper
 
    public function fetchShoppingList($username)
    	{
-        /** @var \Application\Entity\ShoppingListEntity $shoppinglist */
-   	   $shoppinglist = new \Application\Entity\ShoppingListEntity();
-   	   $items = array('glue','paste','toys','pizza','hotdog');
-   	   $shoppinglist->setUserName($username);
-   	   $shoppinglist->setShoppingList($items);
-   	   
-   	   return $shoppinglist;
-   	   
+        $statement = $this->dbAdapter->query("SELECT * FROM `shoppinglist` where `username` = '$username'");
+        $result = $statement->execute();
+
+        $baseEntity = "\\Application\\Entity\\ShoppingListEntity";
+        return $this->hydrateResults($result, $baseEntity);
    	}
 
     public function addShoppingListItem($data)
@@ -59,6 +56,14 @@ class DbMapper
         $shoppinglist->setId($result->getGeneratedValue());
 
         return $shoppinglist;
+    }
+
+    public function deleteShoppingListItem($id)
+    {
+        $statement = $this->dbAdapter->query("DELETE FROM shoppinglist WHERE id = $id");
+        $result = $statement->execute();
+
+        return $result;
     }
 
     public function insertNewUser(array $reg)

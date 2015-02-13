@@ -25,11 +25,11 @@ class ShoppingListController extends AbstractActionController
 
     public function indexAction()
     {
-        $shoppinglist = $this->dbMapper->fetchShoppingList('Aaron');
+        $collection = $this->dbMapper->fetchShoppingList('Aaron');
 
         $view = new ViewModel();
-        $view->setVariable('username', $shoppinglist->getUserName());
-        $view->setVariable('shoppinglist', $shoppinglist->getShoppingList());
+        $view->setVariable('username', $collection[0]->getUserName());
+        $view->setVariable('listCollection', $collection);
 
         return $view;
     }
@@ -53,11 +53,15 @@ class ShoppingListController extends AbstractActionController
         return new JsonModel($data);
     }
 
-    public function removeAction()
+    public function deleteAction()
     {
+        $shoppinglist = $this->dbMapper->deleteShoppingListItem($this->getRequest()->getQuery('id'));
+
         $data = array(
             'success' => true,
-            'data' => array()
+            'data' => array(
+                'id' => $this->getRequest()->getQuery('id')
+            )
         );
 
         return new JsonModel($data);

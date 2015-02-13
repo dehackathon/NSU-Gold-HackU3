@@ -3,9 +3,9 @@
 return array(
     'routes' => array(
         'register' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/register',
+                'route'    => '/register[/:action]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\Register',
                     'action'     => 'index',
@@ -23,11 +23,11 @@ return array(
             ),
         ),
         'login' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/',
+                'route'    => '/[:login[/:action]]',
                 'defaults' => array(
-                    'controller' => 'Application\Controller\Index',
+                    'controller' => 'Application\Controller\Login',
                     'action'     => 'index',
                 ),
             ),
@@ -43,9 +43,9 @@ return array(
             ),
         ),
         'shopping-list' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/shopping-list',
+                'route'    => '/shopping-list[/:action]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\ShoppingList',
                     'action'     => 'index',
@@ -63,7 +63,7 @@ return array(
             ),
         ),
         'calendar' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
                 'route'    => '/calendar',
                 'defaults' => array(
@@ -71,6 +71,18 @@ return array(
                     'action'     => 'index',
                 ),
             ),
+            'may_terminate' => true,
+            'child_routes' => array(
+                'type' => array(
+                    'type' => 'segment',
+                    'options' => array(
+                        'route' => '/type[/:type]',
+                        'defaults' => array(
+                            'action' => 'type',
+                        )
+                    ),
+                )
+            )
         ),
         // The following is a route to simplify getting started creating
         // new controllers and actions without needing to create a new

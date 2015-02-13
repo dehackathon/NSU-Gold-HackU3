@@ -7,6 +7,15 @@ body {
   color: #5a5a5a;
 }
 
+.carousel-caption p {
+  margin-bottom: 20px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.featurette-heading {
+  font-size: 40px;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */

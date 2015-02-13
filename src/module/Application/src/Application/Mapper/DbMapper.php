@@ -41,13 +41,32 @@ class DbMapper
    	   
    	}
 
+    public function insertNewUser(array $reg)
+    {
+        try {
+            $statement = $this->dbAdapter->query("INSERT INTO admin_table(name,email,username,admin_password,password)
+        VALUES('".$reg['name']."','".$reg['email']."','".$reg['username']."','".$reg['admin_password']."','".$reg['password']."')");
+
+
+            $statement->execute();
+            return true;
+        }
+        catch(\Exception $e){
+            return false;
+
+        }
+
+
+
+    }
+
     private function hydrateResults($results, $baseObject)
     {
         $returnValues = array();
 
-        $results->buffer();
 
         if ($results instanceof ResultInterface && $results->isQueryResult()) {
+            $results->buffer();
             $resultSet = new HydratingResultSet(new ReflectionHydrator, new $baseObject);
             $resultSet->initialize($results);
 

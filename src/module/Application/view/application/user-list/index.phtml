@@ -1,34 +1,42 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3>Users</h3></div>
     <div class="panel-body">
-       	<div class="checkbox">
-           	<label>
-               	<input type="checkbox" class="" id="<?php echo $User->getId();?>"/>
-                <?php echo $User->getItem();?>
-            </label>
+        <?php foreach($this->listCollection as $member): ?>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="" id="<?php echo $member->getEmail(); ?>" />
+                    <?php echo $member->getName(); ?>
+                </label>
+            </div>
+        <?php endforeach; ?>
+
             <div>
                 <div class="form-group" id="add-user-group">
-                    <div class="col-sm-8 col-xs-6">
+                    <div class="col-sm-4 col-xs-3">
                         <input type="text" class="form-control" id="user-add" placeholder="Add Roomies">
+                    </div>
+                    <div class="col-sm-4 col-xs-3">
+                        <input type="email" class="form-control" id="user-email" placeholder="Email">
                     </div>
                     <div class="col-sm-4 col-xs-6">
                         <button type="button" id="btn-add-user" class="btn btn-primary" data-loading-text="Adding..." autocomplete="off">Add</button>
                     </div>
                 </div>
             </div>
+    </div>
     <div class="panel-footer">
         <button type="submit" class="btn btn-default" id="btn-delete">Delete</button>
     </div>
 </div>
 <script>
 	$('#btn-delete').on('click',function(){
-		$('input:checkbox.each(function(){
+		$('input:checkbox').each(function(){
 			var sThisVal=(this.checked ? $(this).attr('id') : "");
-				if(sthisVal != ""){
-					$ajax({
+				if(sThisVal != ""){
+                    $.ajax({
 						url: "<?php echo $this->url('user-list');?>/delete",
 						data:{
-							id: sThisVal
+                            email: sThisVal
 						}
 					}).done(function (response){
 						$('#' + response.data.id).parent().parent().remove();
@@ -38,7 +46,26 @@
 	});
 	
 	$('#btn-add-user').on('click',function(){
-			
+        var $btn=$(this).button('loading');
+        $.ajax({
+            url:"<?php echo $this->url('user-list');?>/add",
+            data:{
+                name: $('#user-add').val(),
+                email: $('#user-email').val()
+            }
+        }).done(function(response) {
+            var divCheck = $('<div></div>').addClass('checkbox');
+            var labelCheck = $('<label></label>');
+            var inputCheck = $('<input type="checkbox" />');
+
+            labelCheck.append(inputCheck);
+            labelCheck.append(response.data.name);
+            divCheck.append(labelCheck);
+            $('#add-user-group').before(divCheck);
+
+            $('user-add').val('');
+            $btn.button('reset');
+        });
 	});
 </script>
 					

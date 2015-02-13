@@ -25,7 +25,7 @@ return array(
         'login' => array(
             'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
-                'route'    => '/[:login[/:action]]',
+                'route'    => '/[login[/:action]]',
                 'defaults' => array(
                     'controller' => 'Application\Controller\Login',
                     'action'     => 'index',

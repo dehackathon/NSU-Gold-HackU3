@@ -3,6 +3,7 @@
 namespace Application\Mapper;
 
 use Application\Db\dbAdapter;
+use Application\Entity\MemberEntity;
 use Application\Entity\ShoppingListEntity;
 use Zend\Db\Adapter\Driver\ResultInterface;
 use Zend\Db\ResultSet\HydratingResultSet;
@@ -46,6 +47,11 @@ class DbMapper
 
             $statement = $this->dbAdapter->query("SELECT * FROM admin_table where username=\"" . $params['username'] . "\"");
             $result = $statement->execute();
+            $result->buffer();
+
+            if($result->getAffectedRows() == 0){
+                return false;
+            }
 
             /** @var \Application\Entity\AdminUserEntity $user */
             $user = $this->hydrateResults($result, $baseEntity);
@@ -102,13 +108,49 @@ class DbMapper
         }
     }
 
+    public function addNewMember(array $reg)
+    {
+        try {
+
+            $statement = $this->dbAdapter->query("insert into member(name, email) values('" . $reg['name'] . "','" . $reg['email'] . "')");
+
+            $result = $statement->execute();
+
+            $member = new MemberEntity();
+            $member->setEmail($reg['email']);
+            $member->setName($reg['name']);
+
+            return $member;
+        }
+        catch(\Exception $e){
+            return false;
+        }
+    }
+
+    public function deleteMember($email)
+    {
+        $statement = $this->dbAdapter->query("DELETE FROM member WHERE email = '$email'");
+        $result = $statement->execute();
+
+        return $result;
+    }
+
+    public function fetchMembers(){
+        $statement = $this->dbAdapter->query("SELECT * FROM `member` ");
+        $result = $statement->execute();
+
+        $baseEntity = "\\Application\\Entity\\MemberEntity";
+        return $this->hydrateResults($result, $baseEntity);
+    }
     private function hydrateResults($results, $baseObject)
     {
         $returnValues = array();
 
 
         if ($results instanceof ResultInterface && $results->isQueryResult()) {
-            $results->buffer();
+            if(!$results->isBuffered()){
+                $results->buffer();
+            }
             $resultSet = new HydratingResultSet(new ReflectionHydrator, new $baseObject);
             $resultSet->initialize($results);
 

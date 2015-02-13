@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Application\ViewModel\TypeViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Mapper\DbMapper;
@@ -28,5 +29,11 @@ class CalendarController extends AbstractActionController
         //$users = $this->dbMapper->fetchAllAdminUsers();
 
         return new ViewModel();
+    }
+
+    public function typeAction()
+    {
+        $type = $this->params()->fromRoute('type');
+        return new TypeViewModel($type);
     }
 }

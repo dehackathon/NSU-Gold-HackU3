@@ -63,7 +63,7 @@ return array(
             ),
         ),
         'calendar' => array(
-            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'type' => 'Zend\Mvc\Router\Http\Segment',
             'options' => array(
                 'route'    => '/calendar',
                 'defaults' => array(
@@ -71,6 +71,18 @@ return array(
                     'action'     => 'index',
                 ),
             ),
+            'may_terminate' => true,
+            'child_routes' => array(
+                'type' => array(
+                    'type' => 'segment',
+                    'options' => array(
+                        'route' => '/type[/:type]',
+                        'defaults' => array(
+                            'action' => 'type',
+                        )
+                    ),
+                )
+            )
         ),
         // The following is a route to simplify getting started creating
         // new controllers and actions without needing to create a new

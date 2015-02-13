@@ -3,6 +3,7 @@
 namespace Application\Mapper;
 
 use Application\Db\dbAdapter;
+use Application\Entity\ShoppingListEntity;
 use Zend\Db\Adapter\Driver\ResultInterface;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -31,15 +32,39 @@ class DbMapper
 
    public function fetchShoppingList($username)
    	{
-        /** @var \Application\Entity\ShoppingListEntity $shoppinglist */
-   	   $shoppinglist = new \Application\Entity\ShoppingListEntity();
-   	   $items = array('glue','paste','toys','pizza','hotdog');
-   	   $shoppinglist->setUserName($username);
-   	   $shoppinglist->setShoppingList($items);
-   	   
-   	   return $shoppinglist;
-   	   
+        $statement = $this->dbAdapter->query("SELECT * FROM `shoppinglist` where `username` = '$username'");
+        $result = $statement->execute();
+
+        $baseEntity = "\\Application\\Entity\\ShoppingListEntity";
+        return $this->hydrateResults($result, $baseEntity);
    	}
+
+    public function addShoppingListItem($data)
+    {
+        /** @var \Application\Entity\ShoppingListEntity $shoppinglist */
+        $shoppinglist = new ShoppingListEntity();
+        //$shoppinglist->setUserName($data['username']);
+        //$shoppinglist->setItem($data['item']);
+        $item = $data['item'];
+        $username = $data['username'];
+
+        $statement = $this->dbAdapter->query("INSERT INTO shoppinglist(`item`, `username`) VALUES('$item', '$username')");
+        $result = $statement->execute();
+
+        $shoppinglist->setItem($item);
+        $shoppinglist->setUserName($username);
+        $shoppinglist->setId($result->getGeneratedValue());
+
+        return $shoppinglist;
+    }
+
+    public function deleteShoppingListItem($id)
+    {
+        $statement = $this->dbAdapter->query("DELETE FROM shoppinglist WHERE id = $id");
+        $result = $statement->execute();
+
+        return $result;
+    }
 
     public function insertNewUser(array $reg)
     {
@@ -55,9 +80,6 @@ class DbMapper
             return false;
 
         }
-
-
-
     }
 
     private function hydrateResults($results, $baseObject)

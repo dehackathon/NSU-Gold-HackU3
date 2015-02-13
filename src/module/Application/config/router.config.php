@@ -81,8 +81,18 @@ return array(
                             'action' => 'type',
                         )
                     ),
-                )
-            )
+                ),
+                'events' => array(
+                    'type' => 'segment',
+                    'options' => array(
+                        'route' => '/events',
+                        'defaults' => array(
+                            'action' => 'events',
+                        )
+                    ),
+                ),
+            ),
+
         ),
         // The following is a route to simplify getting started creating
         // new controllers and actions without needing to create a new
